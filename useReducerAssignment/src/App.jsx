@@ -127,3 +127,43 @@
 // }
 
 // export default App
+import React, { useReducer } from 'react'
+
+const App = () => {
+  const initialState = {
+  like:0,
+  dislike:0,
+}
+
+const [state,dispatch] = useReducer(reduser,initialState)
+
+function reduser(state,action)
+{
+  if(action.type === "like")
+  {
+    return{
+      ...state,
+      like:state.like+1,
+    }
+
+  }
+  else if (action.type === "dislike")
+  {
+    return {
+      ...state,
+      dislike:state.dislike+1,
+    }
+  }
+}
+
+  return (
+    <div>
+      <div>{state.like}</div>
+      <button onClick={()=> dispatch({type:"like"})}>Like</button>
+      <div>{state.dislike}</div>
+      <button onClick={()=> dispatch({type:"dislike"})}>DisLike</button>
+    </div>
+  )
+}
+
+export default App
